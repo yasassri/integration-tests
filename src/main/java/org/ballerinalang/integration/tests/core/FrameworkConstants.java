@@ -27,5 +27,9 @@ public class FrameworkConstants {
     public static final String DEFAULT_TESTNG_FILE = "testng.xml";
     public static final String TESTNG_RESULT_OUT_DIRECTORY = "intergration-tests";
     public static final String NATIVE_TESTFILE_LOCATION = "/src/test/resources/testerina-tests/";
+    public static final boolean JACOCO_ENABLE = true;
+    public static final int JACOCO_RETRY_COUNT = 3;
+    public static final String JACOCO_REPORT_OUT_LOCATION = "target";
+
 
 }
