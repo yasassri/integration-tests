@@ -8,35 +8,34 @@ import ballerina.lang.system;
 }
 service <http> StatusCodeService {
 
+    string connection = system:getEnv("TOMCAT_HOST");
     @http:resourceConfig {
         methods:["POST", "GET"],
         path:"/code/{code}"
     }
-    resource statusCodeResource (message m, @http:PathParam {value:"code"} string codeValue, @http:QueryParam {value:"withbody"}string withbody) {
+    resource statusCodeResource (http:Request req, http:Response res, string codeValue) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
+        map params = req.getQueryParams();
+        var withbody, _ = (string)params.withbody;
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue + "?withbody=" + withbody;
-        message response = {};
-        string method = http:getMethod(m);
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        string method = req.getMethod();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 
     @http:resourceConfig {
         methods:["HEAD"],
         path:"/code/{code}"
     }
-    resource statusCodeResource2 (message m, @http:PathParam {value:"code"} string codeValue) {
+    resource statusCodeResource2 (http:Request req, http:Response res, string codeValue) {
+        http:ClientConnector httpCheck;
+        httpCheck= create http:ClientConnector(connection, {});
+        http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + codeValue;
-        message response = {};
-        string method = http:getMethod(m);
-        string connection = system:getEnv("TOMCAT_HOST");
-
-        http:ClientConnector httpCheck = create http:ClientConnector(connection);
-        response = httpCheck.execute(method, resourcePath, m);
-
-        reply response;
+        string method = req.getMethod();
+        clientResponse = httpCheck.execute(method, resourcePath, req);
+        res.forward(clientResponse);
     }
 }
