@@ -27,7 +27,7 @@ else
 jenkins_base_url="https://wso2.org/jenkins/job/ballerinalang/job/tools-distribution"
 
 #Get the Latest Successful Build URL from JENKINS
-latest_successfull_build=$(curl -s "$jenkins_base_url/api/xml?xpath=//lastSuccessfulBuild/url")
+latest_successfull_build=$(curl -s "$jenkins_base_url/api/xml?xpath=//lastStableBuild/url")
 
 #Extract the URL from the latest_successfull_build
 latest_successfull_build_url=$(echo $latest_successfull_build | sed -n 's:.*<url>\(.*\)</url>.*:\1:p')
