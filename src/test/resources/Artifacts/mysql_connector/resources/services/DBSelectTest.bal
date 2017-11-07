@@ -3,20 +3,21 @@ package resources.services;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 
-sql:ClientConnector connectorInstanceSelect = conn:init();
-
 struct ResultCount{
     int COUNTTENPERCENT;
 }
 
 function selectGeneral (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data = "e";
 
     try {
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -26,6 +27,9 @@ function selectGeneral (string query) (json, error){
 
 function selectBetween (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -34,7 +38,7 @@ function selectBetween (string query) (json, error){
         sql:Parameter para1 = {sqlType:"double", value:5500.50, direction:0};
         sql:Parameter para2 = {sqlType:"double", value:11350.50, direction:0};
         parameters = [para1, para2];
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -44,6 +48,9 @@ function selectBetween (string query) (json, error){
 
 function selectLike (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -53,7 +60,7 @@ function selectLike (string query) (json, error){
     try {
         sql:Parameter para = {sqlType:"varchar", value:likeValue, direction:0};
         parameters = [para];
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -63,6 +70,9 @@ function selectLike (string query) (json, error){
 
 function selectIn (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -70,7 +80,7 @@ function selectIn (string query) (json, error){
     try {
         sql:Parameter para = {sqlType:"varchar", value:in, direction:0};
         parameters = [para];
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -80,6 +90,9 @@ function selectIn (string query) (json, error){
 
 function selectAndOr (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -89,7 +102,7 @@ function selectAndOr (string query) (json, error){
         sql:Parameter para2 = {sqlType:"varchar", value:"München", direction:0};
         sql:Parameter para3 = {sqlType:"varchar", value:"Germany", direction:0};
         parameters = [para3, para1, para2];
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -99,6 +112,9 @@ function selectAndOr (string query) (json, error){
 
 function selectWithLimit () (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     TypeCastError ex;
@@ -106,7 +122,7 @@ function selectWithLimit () (json, error){
     int count;
 
     try {
-        datatable dt = connectorInstanceSelect.select ("select CEIL(count(CustomerID)*50/100) as countTenPercent from Customers", parameters);
+        datatable dt = ep.select ("select CEIL(count(CustomerID)*50/100) as countTenPercent from Customers", parameters);
         ResultCount rs;
         while (dt.hasNext()) {
             any dataStruct = dt.getNext();
@@ -115,7 +131,7 @@ function selectWithLimit () (json, error){
         }
         sql:Parameter para = {sqlType:"integer", value:count, direction:0};
         parameters = [para];
-        dt = connectorInstanceSelect.select ("select CustomerName from Customers ORDER BY TotalPurchases DESC limit 4", parameters);
+        dt = ep.select ("select CustomerName from Customers ORDER BY TotalPurchases DESC limit 4", parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -125,6 +141,9 @@ function selectWithLimit () (json, error){
 
 function selectWithExists (string query) (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -132,7 +151,7 @@ function selectWithExists (string query) (json, error){
     try {
         sql:Parameter para = {sqlType:"integer", value:20, direction:0};
         parameters = [para];
-        datatable dt = connectorInstanceSelect.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -142,6 +161,9 @@ function selectWithExists (string query) (json, error){
 
 function selectWithComplexSql () (json, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -150,7 +172,7 @@ function selectWithComplexSql () (json, error){
         sql:Parameter para1 = {sqlType:"integer", value:3, direction:0};
         sql:Parameter para2 = {sqlType:"integer", value:0, direction:0};
         parameters = [para1, para2];
-        datatable dt = connectorInstanceSelect.select ("select Country, TRUNCATE(MAX(LoyaltyPoints/TotalPurchases), ?) as MaxBuyingRatio from Customers where TotalPurchases > ? group by Country", parameters);
+        datatable dt = ep.select ("select Country, TRUNCATE(MAX(LoyaltyPoints/TotalPurchases), ?) as MaxBuyingRatio from Customers where TotalPurchases > ? group by Country", parameters);
         data, _ = <json>dt;
     } catch (error e) {
         err = e;
@@ -160,12 +182,15 @@ function selectWithComplexSql () (json, error){
 
 function selectGeneralToXml (string query) (xml, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     xml data;
 
     try {
-        datatable dt = connectorInstance.select (query, parameters);
+        datatable dt = ep.select (query, parameters);
         data, _ = <xml>dt;
     } catch (error e) {
         err = e;

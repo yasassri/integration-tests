@@ -14,12 +14,14 @@ service <http> HTTPMethodService {
         path:"/all"
     }
     resource statusCodeResource (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck = create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/all";
         string method = req.getMethod();
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -28,12 +30,14 @@ service <http> HTTPMethodService {
         path:"/head"
     }
     resource headResource (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck = create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/head";
         string method = "HEAD";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -42,12 +46,14 @@ service <http> HTTPMethodService {
         path:"/get"
     }
     resource getResource1 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck = create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/get";
         string method = "GET";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -56,12 +62,14 @@ service <http> HTTPMethodService {
         path:"/post"
     }
     resource postResource1 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck = create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -70,12 +78,14 @@ service <http> HTTPMethodService {
         path:"/put"
     }
     resource putResource1 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck = create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
         string method = "PUT";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
 
     }
@@ -85,12 +95,14 @@ service <http> HTTPMethodService {
         path:"/gettopost"
     }
     resource getResource (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -99,11 +111,13 @@ service <http> HTTPMethodService {
         path:"/doget"
     }
     resource getResource2 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/get";
-        clientResponse = httpCheck.get(resourcePath, req);
+        clientResponse, _ = httpCheck.get(resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -112,12 +126,14 @@ service <http> HTTPMethodService {
         path:"/posttoput"
     }
     resource postResource (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
         string method = "PUT";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -126,11 +142,13 @@ service <http> HTTPMethodService {
         path:"/dopost"
     }
     resource postResource2 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
-        clientResponse = httpCheck.post(resourcePath, req);
+        clientResponse, _ = httpCheck.post(resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -139,12 +157,14 @@ service <http> HTTPMethodService {
         path:"/puttopost"
     }
     resource putResource (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -153,11 +173,13 @@ service <http> HTTPMethodService {
         path:"/doput"
     }
     resource putResource2 (http:Request req, http:Response res) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
-        clientResponse = httpCheck.put(resourcePath, req);
+        clientResponse, _ = httpCheck.put(resourcePath, req);
         res.forward(clientResponse);
     }
 }
