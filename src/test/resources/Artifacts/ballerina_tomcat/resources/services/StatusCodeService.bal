@@ -14,15 +14,17 @@ service <http> StatusCodeService {
         path:"/code/{code}"
     }
     resource statusCodeResource (http:Request req, http:Response res, string code) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         map params = req.getQueryParams();
         var withbody, _ = (string)params.withbody;
         println(withbody);
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + code + "?withbody=" + withbody;
         string method = req.getMethod();
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 
@@ -31,12 +33,14 @@ service <http> StatusCodeService {
         path:"/code/{code}"
     }
     resource statusCodeResource2 (http:Request req, http:Response res, string code) {
-        http:ClientConnector httpCheck;
-        httpCheck= create http:ClientConnector(connection, {});
+        endpoint<http:HttpClient> httpCheck {}
+        http:HttpClient httpCh;
+        httpCh = create http:HttpClient(connection, {});
+        bind httpCh with httpCheck;
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + code;
         string method = req.getMethod();
-        clientResponse = httpCheck.execute(method, resourcePath, req);
+        clientResponse, _ = httpCheck.execute(method, resourcePath, req);
         res.forward(clientResponse);
     }
 }

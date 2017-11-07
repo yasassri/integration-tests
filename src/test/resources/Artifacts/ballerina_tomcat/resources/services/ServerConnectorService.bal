@@ -125,8 +125,10 @@ service <http> ServerConnectorService {
         TypeConversionError err;
         int cLength;
 
-        string auth = req.getHeader("Authorization");
-        string length = req.getHeader("Content-Length");
+        string auth;
+        string length;
+        auth, _ = req.getHeader("Authorization");
+        length, _ = req.getHeader("Content-Length");
         cLength, err = <int>length;
 
         if(auth.equalsIgnoreCase("YWRtaW46YWRtaW4=")){
@@ -170,7 +172,8 @@ service <http> ServerConnectorService {
         path:"/call/new"
     }
     resource getNewMenuDetailsResource (http:Request req, http:Response res) {
-        string expect = req.getHeader("Expect");
+        string expect;
+        expect, _ = req.getHeader("Expect");
         println(expect);
         if(!expect.equalsIgnoreCase("100-continue")){
             println("a");

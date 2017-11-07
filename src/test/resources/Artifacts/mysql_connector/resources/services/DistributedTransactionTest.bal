@@ -3,11 +3,14 @@ package resources.services;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 
-sql:ClientConnector connectorInstanceFirst = conn:initDistributedOne();
-sql:ClientConnector connectorInstanceSecond = conn:initDistributedTwo();
-
 function disTransctionSuccess () (string, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     string returnValue;
@@ -17,10 +20,10 @@ function disTransctionSuccess () (string, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            int rowCount_2 = connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -39,6 +42,12 @@ function disTransctionSuccess () (string, error){
 
 function disTransctionFailWithDefaultRetry () (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int retryCount = 0;
@@ -49,10 +58,10 @@ function disTransctionFailWithDefaultRetry () (string, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            int rowCount_2 = connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -73,6 +82,12 @@ function disTransctionFailWithDefaultRetry () (string, int, error){
 
 function disTransctionFailWithCustomRetry () (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int retryCount = 0;
@@ -83,10 +98,10 @@ function disTransctionFailWithCustomRetry () (string, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
-            int rowCount_2 = connectorInstanceSecond.update("Insert into People
+            int rowCount_2 = epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -108,6 +123,12 @@ function disTransctionFailWithCustomRetry () (string, int, error){
 
 function disTransctionFailForceAbort () (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int retryCount = 0;
@@ -119,14 +140,14 @@ function disTransctionFailForceAbort () (string, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1= connectorInstanceSecond.update("Insert into People
+            rowCount_1= epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
             if (value){
                 abort;
             }
             int rowCount_2;
-            rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_2, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -149,6 +170,12 @@ function disTransctionFailForceAbort () (string, int, error){
 
 function disTransctionFailForceThrow () (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int retryCount = 0;
@@ -160,7 +187,7 @@ function disTransctionFailForceThrow () (string, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1= connectorInstanceSecond.update("Insert into People
+            rowCount_1= epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
             if (value){
@@ -168,7 +195,7 @@ function disTransctionFailForceThrow () (string, int, error){
                 throw ex;
             }
             int rowCount_2;
-            rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_2, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -189,6 +216,12 @@ function disTransctionFailForceThrow () (string, int, error){
 
 function disMultipleTransSuccess () (string, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     string returnValue = "Before trx";
@@ -198,7 +231,7 @@ function disMultipleTransSuccess () (string, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -211,7 +244,7 @@ function disMultipleTransSuccess () (string, error){
         }
 
         transaction {
-             int rowCount_2 = connectorInstanceSecond.update("Insert into People
+             int rowCount_2 = epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
 
@@ -231,6 +264,12 @@ function disMultipleTransSuccess () (string, error){
 
 function disMultipleTransFailWithRetryOne () (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     string returnValue = "Before trx";
@@ -241,7 +280,7 @@ function disMultipleTransFailWithRetryOne () (string, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
@@ -256,7 +295,7 @@ function disMultipleTransFailWithRetryOne () (string, int, error){
         }
 
         transaction {
-             int rowCount_2 = connectorInstanceSecond.update("Insert into People
+             int rowCount_2 = epSecond.update("Insert into People
                (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                        parameters);
         } failed {
@@ -276,6 +315,12 @@ function disMultipleTransFailWithRetryOne () (string, int, error){
 
 function disNestedTransFailRetryChild () (string, int, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     string returnValue = "Before trx";
@@ -287,12 +332,12 @@ function disNestedTransFailRetryChild () (string, int, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
             transaction {
-                 int rowCount_2 = connectorInstanceSecond.update("Insert into People
+                 int rowCount_2 = epSecond.update("Insert into People
                    (PersonID,LastName,FirstName,Age,Status) values ('Clerk', 'James', 54, 'active')",
                                                parameters);
             } failed {
@@ -324,6 +369,12 @@ function disNestedTransFailRetryChild () (string, int, int, error){
 
 function disNestedTransFailRetryParent () (string, int, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parameters = [];
     error err;
     string returnValue = "Before trx";
@@ -335,12 +386,12 @@ function disNestedTransFailRetryParent () (string, int, int, error){
         transaction {
             string[] ids;
             int rowCount_1;
-            rowCount_1, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons
+            rowCount_1, ids = epFirst.updateWithGeneratedKeys("Insert into Persons
                (LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                parameters, keyColumns);
 
             transaction {
-                 int rowCount_2 = connectorInstanceSecond.update("Insert into People
+                 int rowCount_2 = epSecond.update("Insert into People
                    (PersonID,LastName,FirstName,Age,Status) values (1, 'Clerk', 'James', 54, 'active')",
                                                parameters);
             } failed {
@@ -372,6 +423,12 @@ function disNestedTransFailRetryParent () (string, int, int, error){
 
 function disTransctionGeneral (json dataset) (string, int, error){
 
+    endpoint<sql:ClientConnector> epFirst{
+        conn:initDistributedOne();
+    }
+    endpoint<sql:ClientConnector> epSecond{
+        conn:initDistributedTwo();
+    }
     sql:Parameter[] parametersPersons = [];
     sql:Parameter[] parametersPeople = [];
     error err;
@@ -397,11 +454,11 @@ function disTransctionGeneral (json dataset) (string, int, error){
                 parametersPeople = [paraID, paraLPName, paraFPName, paraAgeP, paraStatusP];
                 parametersPersons = [paraLPName, paraFPName, paraAgeP, paraStatusP];
 
-                int rowCount_1 = connectorInstanceSecond.update("Insert into People (PersonID,LastName,FirstName,Age,Status) values (?, ?, ?, ?, ?)",parametersPeople);
+                int rowCount_1 = epSecond.update("Insert into People (PersonID,LastName,FirstName,Age,Status) values (?, ?, ?, ?, ?)",parametersPeople);
                 if (status1.equalsIgnoreCase("active")){
                     string[] ids;
                     int rowCount_2;
-                    rowCount_2, ids = connectorInstanceFirst.updateWithGeneratedKeys("Insert into Persons (LastName,FirstName,Age,Status) values (?, ?, ?, ?)",parametersPersons, keyColumns);
+                    rowCount_2, ids = epFirst.updateWithGeneratedKeys("Insert into Persons (LastName,FirstName,Age,Status) values (?, ?, ?, ?)",parametersPersons, keyColumns);
                 }
                 else{
                     abort;

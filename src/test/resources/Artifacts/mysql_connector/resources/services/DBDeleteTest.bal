@@ -3,10 +3,11 @@ package resources.services;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 
-sql:ClientConnector connectorInstanceDelete = conn:init();
-
 function deleteWithParams (string query, string valueToBeDeleted) (int, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int noOfRows;
@@ -14,7 +15,7 @@ function deleteWithParams (string query, string valueToBeDeleted) (int, error){
     try {
         sql:Parameter para = {sqlType:"varchar", value:valueToBeDeleted, direction:0};
         parameters = [para];
-        noOfRows = connectorInstanceDelete.update (query, parameters);
+        noOfRows = ep.update(query, parameters);
     } catch (error e) {
         err = e;
     }
@@ -23,12 +24,15 @@ function deleteWithParams (string query, string valueToBeDeleted) (int, error){
 
 function deleteGeneral (string query) (int, error){
 
+    endpoint<sql:ClientConnector> ep{
+        conn:init();
+    }
     sql:Parameter[] parameters = [];
     error err;
     int noOfRows;
 
     try {
-        noOfRows = connectorInstanceDelete.update (query, parameters);
+        noOfRows = ep.update (query, parameters);
     } catch (error e) {
         err = e;
     }
