@@ -177,7 +177,7 @@ service <http> ServerConnectorService {
         println(expect);
         if(!expect.equalsIgnoreCase("100-continue")){
             println("a");
-            int statusCode = 417;
+            int statusCode = 500;
             res.setStatusCode(statusCode);
         }
         res.send();
