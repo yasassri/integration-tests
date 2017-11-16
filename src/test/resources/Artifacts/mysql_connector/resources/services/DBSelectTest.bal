@@ -7,11 +7,14 @@ struct ResultCount{
     int COUNTTENPERCENT;
 }
 
+sql:ClientConnector connInit = conn:init();
+
 function selectGeneral (string query) (json, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data = "e";
@@ -28,8 +31,9 @@ function selectGeneral (string query) (json, error){
 function selectBetween (string query) (json, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -49,8 +53,9 @@ function selectBetween (string query) (json, error){
 function selectLike (string query) (json, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -70,9 +75,11 @@ function selectLike (string query) (json, error){
 
 function selectIn (string query) (json, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -90,9 +97,11 @@ function selectIn (string query) (json, error){
 
 function selectAndOr (string query) (json, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -112,9 +121,11 @@ function selectAndOr (string query) (json, error){
 
 function selectWithLimit () (json, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     TypeCastError ex;
@@ -141,9 +152,11 @@ function selectWithLimit () (json, error){
 
 function selectWithExists (string query) (json, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -161,9 +174,11 @@ function selectWithExists (string query) (json, error){
 
 function selectWithComplexSql () (json, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     json data;
@@ -182,9 +197,11 @@ function selectWithComplexSql () (json, error){
 
 function selectGeneralToXml (string query) (xml, error){
 
+
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInit with ep;
     sql:Parameter[] parameters = [];
     error err;
     xml data;
