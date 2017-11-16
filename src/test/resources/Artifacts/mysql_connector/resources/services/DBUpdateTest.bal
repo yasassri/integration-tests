@@ -3,11 +3,14 @@ package resources.services;
 import ballerina.data.sql;
 import resources.connectorInit as conn;
 
+sql:ClientConnector connInitU = conn:init();
+
 function updateWithParams (string query, string value1, float value2) (int, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitU with ep;
     sql:Parameter[] parameters = [];
     error err;
     int noOfRows;
@@ -27,8 +30,9 @@ function updateWithParams (string query, string value1, float value2) (int, erro
 function updateWithMissingParams (string query, string value1, float value2) (int, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitU with ep;
     sql:Parameter[] parameters = [];
     error err;
     int noOfRows;
@@ -47,8 +51,9 @@ function updateWithMissingParams (string query, string value1, float value2) (in
 function updateWithoutParams (string query) (int, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitU with ep;
     sql:Parameter[] parameters = [];
     error err;
     int noOfRows;

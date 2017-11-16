@@ -9,11 +9,14 @@ struct ResultOrders{
     string location;
 }
 
+sql:ClientConnector connInitS = conn:init();
+
 function createStoredProcedure(string procedure) (int, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     int insertedRowCount;
     error err;
@@ -31,8 +34,9 @@ function createStoredProcedure(string procedure) (int, error){
 function callProcedureSuccess(int customerNo)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -67,8 +71,9 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, error){
 function callProcedureWithWrongDirectionForParams(int customerNo, string status)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -159,8 +164,9 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
 function callProcedureWithLessInParams(int customerNo, string status)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -202,8 +208,9 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
 function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -239,8 +246,9 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
 function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -276,8 +284,9 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
 function callProcedureWithMismatchingParams(int customerNo, string status)(any, any, any, any, any, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     int inc = 5;
@@ -377,8 +386,9 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
 function callProcedureToGetResultSet(int customerNo)(json, error){
 
     endpoint<sql:ClientConnector> ep{
-        conn:init();
+
     }
+    bind connInitS with ep;
     sql:Parameter[] parameters = [];
     error err;
     error typeErr;
