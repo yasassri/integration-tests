@@ -15,7 +15,7 @@ service <http> ServerConnectorService {
         string payload = "This is a test payload";
         res.setStringPayload(payload);
 
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -28,7 +28,7 @@ service <http> ServerConnectorService {
         string payload = "This is a test payload";
         res.setStringPayload(payload);
 
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -41,7 +41,7 @@ service <http> ServerConnectorService {
         string payload = "This is a test payload";
         res.setStringPayload(payload);
         res.setStatusCode(statusCode);
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -56,7 +56,7 @@ service <http> ServerConnectorService {
         res.setHeader("Location", location);
         res.setHeader("ETag", "errtyui"+orderId);
 
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -71,7 +71,7 @@ service <http> ServerConnectorService {
         res.setHeader("Location", location);
         res.setHeader("ETag", "errtyui"+orderId);
 
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -81,7 +81,7 @@ service <http> ServerConnectorService {
     resource batchProcessingResetResource(http:Request req, http:Response res){
         int statusCode = 205;
         res.setStatusCode(statusCode);
-        res.send();
+        _ = res.send();
     }
 
 
@@ -114,7 +114,7 @@ service <http> ServerConnectorService {
 
         res.setStatusCode(statusCode);
         res.setHeader("Location", "https://jsonplaceholder.typicode.com/users");
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -164,7 +164,7 @@ service <http> ServerConnectorService {
             string sPayload = "Content is too large. Please try again";
             res.setStringPayload(sPayload);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -180,7 +180,7 @@ service <http> ServerConnectorService {
             int statusCode = 500;
             res.setStatusCode(statusCode);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -190,7 +190,7 @@ service <http> ServerConnectorService {
     resource workInprogressResource (http:Request req, http:Response res) {
         int statusCode = 501;
         res.setStatusCode(statusCode);
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -200,7 +200,7 @@ service <http> ServerConnectorService {
     resource serviceUnavailableResource (http:Request req, http:Response res) {
         int statusCode = 503;
         res.setStatusCode(statusCode);
-        res.send();
+        _ = res.send();
     }
 
 }

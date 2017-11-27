@@ -39,8 +39,8 @@ function selectBetween (string query) (json, error){
     json data;
 
     try {
-        sql:Parameter para1 = {sqlType:"double", value:5500.50, direction:0};
-        sql:Parameter para2 = {sqlType:"double", value:11350.50, direction:0};
+        sql:Parameter para1 = {sqlType:sql:Type.DOUBLE, value:5500.50, direction:sql:Direction.IN};
+        sql:Parameter para2 = {sqlType:sql:Type.DOUBLE, value:11350.50, direction:sql:Direction.IN};
         parameters = [para1, para2];
         datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
@@ -63,7 +63,7 @@ function selectLike (string query) (json, error){
     string likeValue = string `%{{value}}%`;
 
     try {
-        sql:Parameter para = {sqlType:"varchar", value:likeValue, direction:0};
+        sql:Parameter para = {sqlType:sql:Type.VARCHAR, value:likeValue, direction:sql:Direction.IN};
         parameters = [para];
         datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
@@ -85,7 +85,7 @@ function selectIn (string query) (json, error){
     json data;
     string [] in = ["Germany", "UK"];
     try {
-        sql:Parameter para = {sqlType:"varchar", value:in, direction:0};
+        sql:Parameter para = {sqlType:sql:Type.VARCHAR, value:in, direction:sql:Direction.IN};
         parameters = [para];
         datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
@@ -107,9 +107,9 @@ function selectAndOr (string query) (json, error){
     json data;
 
     try {
-        sql:Parameter para1 = {sqlType:"varchar", value:"Berlin", direction:0};
-        sql:Parameter para2 = {sqlType:"varchar", value:"München", direction:0};
-        sql:Parameter para3 = {sqlType:"varchar", value:"Germany", direction:0};
+        sql:Parameter para1 = {sqlType:sql:Type.VARCHAR, value:"Berlin", direction:sql:Direction.IN};
+        sql:Parameter para2 = {sqlType:sql:Type.VARCHAR, value:"München", direction:sql:Direction.IN};
+        sql:Parameter para3 = {sqlType:sql:Type.VARCHAR, value:"Germany", direction:sql:Direction.IN};
         parameters = [para3, para1, para2];
         datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
@@ -140,7 +140,7 @@ function selectWithLimit () (json, error){
             rs, ex = (ResultCount) dataStruct;
             count = rs.COUNTTENPERCENT;
         }
-        sql:Parameter para = {sqlType:"integer", value:count, direction:0};
+        sql:Parameter para = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.IN};
         parameters = [para];
         dt = ep.select ("select CustomerName from Customers ORDER BY TotalPurchases DESC limit 4", parameters);
         data, _ = <json>dt;
@@ -162,7 +162,7 @@ function selectWithExists (string query) (json, error){
     json data;
 
     try {
-        sql:Parameter para = {sqlType:"integer", value:20, direction:0};
+        sql:Parameter para = {sqlType:sql:Type.INTEGER, value:20, direction:sql:Direction.IN};
         parameters = [para];
         datatable dt = ep.select (query, parameters);
         data, _ = <json>dt;
@@ -184,8 +184,8 @@ function selectWithComplexSql () (json, error){
     json data;
 
     try {
-        sql:Parameter para1 = {sqlType:"integer", value:3, direction:0};
-        sql:Parameter para2 = {sqlType:"integer", value:0, direction:0};
+        sql:Parameter para1 = {sqlType:sql:Type.INTEGER, value:3, direction:sql:Direction.IN};
+        sql:Parameter para2 = {sqlType:sql:Type.INTEGER, value:0, direction:sql:Direction.IN};
         parameters = [para1, para2];
         datatable dt = ep.select ("select Country, TRUNCATE(MAX(LoyaltyPoints/TotalPurchases), ?) as MaxBuyingRatio from Customers where TotalPurchases > ? group by Country", parameters);
         data, _ = <json>dt;

@@ -28,7 +28,7 @@ service <http> UpdateTestService {
               res.setStringPayload(err.msg);
 
          }
-              res.send();
+              _ = res.send();
     }
 
     @http:resourceConfig {
@@ -52,7 +52,7 @@ service <http> UpdateTestService {
               res.setStringPayload(err.msg);
 
          }
-              res.send();
+              _ = res.send();
 
     }
 
@@ -72,7 +72,7 @@ service <http> UpdateTestService {
               res.setStringPayload(err.msg);
 
          }
-              res.send();
+              _ = res.send();
 
     }
 }

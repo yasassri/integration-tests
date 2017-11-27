@@ -11,6 +11,6 @@ service<http> pingService {
     }
     resource sayHello (http:Request req, http:Response res) {
         res.setStringPayload("Ping from the server!");
-        res.send();
+        _ = res.send();
     }
 }

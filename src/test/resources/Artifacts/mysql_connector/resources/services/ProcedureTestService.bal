@@ -23,7 +23,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -49,7 +49,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -76,7 +76,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
       @http:resourceConfig {
@@ -103,7 +103,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -129,7 +129,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -155,7 +155,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -182,7 +182,7 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -201,6 +201,6 @@ service <http> ProcedureTestService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 }

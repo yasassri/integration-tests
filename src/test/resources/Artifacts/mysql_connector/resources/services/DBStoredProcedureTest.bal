@@ -50,13 +50,13 @@ function callProcedureSuccess(int customerNo)(any, any, any, any, any, error){
     sql:Parameter paraDisputed;
 
     try {
-        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-        paraInc = {sqlType:"integer", value:inc, direction:0};
-        paraCount = {sqlType:"integer", value:count, direction:2};
-        paraShipped = {sqlType:"integer", direction:1};
-        paraCanceled = {sqlType:"integer", direction:1};
-        paraResolved = {sqlType:"integer", direction:1};
-        paraDisputed = {sqlType:"integer", direction:1};
+        paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+        paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+        paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+        paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
         dt.close();
@@ -88,67 +88,67 @@ function callProcedureWithWrongDirectionForParams(int customerNo, string status)
 
     try {
         if (status.equalsIgnoreCase("intoout")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:1};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.OUT};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("intoinout")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:2};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.INOUT};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("outtoin")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:0};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.IN};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("outtoinout")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:2};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.INOUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("inouttoin")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:0};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.IN};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("inouttoout")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:1};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.OUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else{
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
@@ -181,13 +181,13 @@ function callProcedureWithLessInParams(int customerNo, string status)(any, any, 
     sql:Parameter test;
 
     try {
-        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-        paraInc = {sqlType:"integer", value:inc, direction:0};
-        paraCount = {sqlType:"integer", value:count, direction:2};
-        paraShipped = {sqlType:"integer", direction:1};
-        paraCanceled = {sqlType:"integer", direction:1};
-        paraResolved = {sqlType:"integer", direction:1};
-        paraDisputed = {sqlType:"integer", direction:1};
+        paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+        paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+        paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+        paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         parameters = [paraCustomerNo, test,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         if (status.equalsIgnoreCase("select")){
             parameters = [test, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
@@ -225,13 +225,13 @@ function callProcedureWithLessOutParams(int customerNo)(any, any, any, any, any,
     sql:Parameter test;
 
     try {
-        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-        paraInc = {sqlType:"integer", value:inc, direction:0};
-        paraCount = {sqlType:"integer", value:count, direction:2};
-        paraShipped = {sqlType:"integer", direction:1};
-        paraCanceled = {sqlType:"integer", direction:1};
-        paraResolved = {sqlType:"integer", direction:1};
-        paraDisputed = {sqlType:"integer", direction:1};
+        paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+        paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+        paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+        paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         parameters = [paraCustomerNo, paraInc,  test, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
         dt.close();
@@ -263,13 +263,13 @@ function callProcedureWithLessInOutParams(int customerNo)(any, any, any, any, an
     sql:Parameter test;
 
     try {
-        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-        paraInc = {sqlType:"integer", value:inc, direction:0};
-        paraCount = {sqlType:"integer", value:count, direction:2};
-        paraShipped = {sqlType:"integer", direction:1};
-        paraCanceled = {sqlType:"integer", direction:1};
-        paraResolved = {sqlType:"integer", direction:1};
-        paraDisputed = {sqlType:"integer", direction:1};
+        paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+        paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+        paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+        paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         parameters = [paraCustomerNo, paraInc,  paraShipped, paraCanceled, paraResolved, paraDisputed, test];
         datatable dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
         dt.close();
@@ -301,76 +301,76 @@ function callProcedureWithMismatchingParams(int customerNo, string status)(any, 
 
     try {
         if (status.equalsIgnoreCase("invaluenotchanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"varchar", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.VARCHAR, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("invaluechanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"varchar", value:"test", direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.VARCHAR, value:"test", direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if(status.equalsIgnoreCase("inonlyvaluechanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:"test", direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:"test", direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("out")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"varchar", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.VARCHAR, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("inoutvaluenotchanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"varchar", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.VARCHAR, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("inoutvaluechanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"varchar", value:"test", direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.VARCHAR, value:"test", direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else if (status.equalsIgnoreCase("inoutonlyvaluechanged")){
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:"test", direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:"test", direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         else{
-            paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-            paraInc = {sqlType:"integer", value:inc, direction:0};
-            paraCount = {sqlType:"integer", value:count, direction:2};
-            paraShipped = {sqlType:"integer", direction:1};
-            paraCanceled = {sqlType:"integer", direction:1};
-            paraResolved = {sqlType:"integer", direction:1};
-            paraDisputed = {sqlType:"integer", direction:1};
+            paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+            paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+            paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+            paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+            paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         }
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         datatable dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
@@ -405,13 +405,13 @@ function callProcedureToGetResultSet(int customerNo)(json, error){
     json result;
 
     try {
-        paraCustomerNo = {sqlType:"integer", value:customerNo, direction:0};
-        paraInc = {sqlType:"integer", value:inc, direction:0};
-        paraCount = {sqlType:"integer", value:count, direction:2};
-        paraShipped = {sqlType:"integer", direction:1};
-        paraCanceled = {sqlType:"integer", direction:1};
-        paraResolved = {sqlType:"integer", direction:1};
-        paraDisputed = {sqlType:"integer", direction:1};
+        paraCustomerNo = {sqlType:sql:Type.INTEGER, value:customerNo, direction:sql:Direction.IN};
+        paraInc = {sqlType:sql:Type.INTEGER, value:inc, direction:sql:Direction.IN};
+        paraCount = {sqlType:sql:Type.INTEGER, value:count, direction:sql:Direction.INOUT};
+        paraShipped = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraCanceled = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraResolved = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
+        paraDisputed = {sqlType:sql:Type.INTEGER, direction:sql:Direction.OUT};
         parameters = [paraCustomerNo, paraInc, paraShipped, paraCanceled, paraResolved, paraDisputed, paraCount];
         dt = ep.call ("{call get_order_by_cust(?,?,?,?,?,?,?)}", parameters);
         result, _ = <json>dt;
