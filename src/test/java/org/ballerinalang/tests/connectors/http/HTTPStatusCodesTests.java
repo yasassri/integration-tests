@@ -40,10 +40,10 @@ import static org.testng.Assert.assertNull;
  * Tests HTTP Status Codes
  * Uses StatusCodeService.bal service
  */
-public class HTTPStatusCodesTests extends BallerinaBaseTest {
+public class HTTPStatusCodesTests extends BallerinaBaseTest{
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPStatusCodesTests.class);
-    //String ballerinaURL = "http://192.168.48.12:32013";
+    //String ballerinaURL = "http://192.168.48.118:32013";
     //String ballerinaURL = "http://localhost:9090";
 
     HTTPStatusCodesTests() {
@@ -287,7 +287,7 @@ public class HTTPStatusCodesTests extends BallerinaBaseTest {
      * HTTP 426 Sends special types of headers
      * Client (POST) --> Ballerina --> BE | BE (HTTP 405) --> Ballerina --> Client
      */
-    @Test public void postHTTP426() throws IOException {
+    @Test(enabled = false) public void postHTTP426() throws IOException {
         log.info("Executing Test Method : postHTTP426");
         //http://localhost:9090/statuscode/code/404?withbody=false
         String serviceURL = ballerinaURL + "/statuscode/code/426?withbody=true";

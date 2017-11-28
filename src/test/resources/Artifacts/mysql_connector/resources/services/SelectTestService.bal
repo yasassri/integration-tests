@@ -22,7 +22,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -39,7 +39,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -56,7 +56,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -73,7 +73,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -90,7 +90,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -106,7 +106,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
       @http:resourceConfig {
@@ -123,7 +123,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -139,7 +139,7 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -156,6 +156,6 @@ service <http> SelectTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 }

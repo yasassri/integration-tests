@@ -16,7 +16,7 @@ function deleteWithParams (string query, string valueToBeDeleted) (int, error){
     int noOfRows;
 
     try {
-        sql:Parameter para = {sqlType:"varchar", value:valueToBeDeleted, direction:0};
+        sql:Parameter para = {sqlType:sql:Type.VARCHAR, value:valueToBeDeleted, direction:sql:Direction.IN};
         parameters = [para];
         noOfRows = ep.update(query, parameters);
     } catch (error e) {

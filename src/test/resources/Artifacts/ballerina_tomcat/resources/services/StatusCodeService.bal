@@ -25,7 +25,7 @@ service <http> StatusCodeService {
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + code + "?withbody=" + withbody;
         string method = req.getMethod();
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -41,6 +41,6 @@ service <http> StatusCodeService {
         string resourcePath = "/RESTfulService/mock/statusCodeService/" + code;
         string method = req.getMethod();
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 }

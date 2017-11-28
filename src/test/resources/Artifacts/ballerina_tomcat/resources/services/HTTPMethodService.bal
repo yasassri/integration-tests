@@ -22,7 +22,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/all";
         string method = req.getMethod();
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -38,7 +38,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/head";
         string method = "HEAD";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _  = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -54,7 +54,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/get";
         string method = "GET";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -70,7 +70,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -86,7 +86,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/put";
         string method = "PUT";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
 
     }
 
@@ -103,7 +103,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -118,7 +118,7 @@ service <http> HTTPMethodService {
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/get";
         clientResponse, _ = httpCheck.get(resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -134,7 +134,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/put";
         string method = "PUT";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -149,7 +149,7 @@ service <http> HTTPMethodService {
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/post";
         clientResponse, _ = httpCheck.post(resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -165,7 +165,7 @@ service <http> HTTPMethodService {
         string resourcePath = "/RESTfulService/mock/service/post";
         string method = "POST";
         clientResponse, _ = httpCheck.execute(method, resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 
     @http:resourceConfig {
@@ -180,6 +180,6 @@ service <http> HTTPMethodService {
         http:Response clientResponse = {};
         string resourcePath = "/RESTfulService/mock/service/put";
         clientResponse, _ = httpCheck.put(resourcePath, req);
-        res.forward(clientResponse);
+        _ = res.forward(clientResponse);
     }
 }

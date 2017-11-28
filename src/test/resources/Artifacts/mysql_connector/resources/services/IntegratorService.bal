@@ -34,7 +34,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -64,7 +64,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
        @http:resourceConfig {
@@ -95,7 +95,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -114,7 +114,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -133,7 +133,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -163,7 +163,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -192,7 +192,7 @@ service <http> IntegratorService {
              finalResponsePayload = err.msg;
         }
         res.setStringPayload(finalResponsePayload);
-        res.send();
+        _ = res.send();
     }
 
       @http:resourceConfig {
@@ -221,7 +221,7 @@ service <http> IntegratorService {
              finalResponsePayload = err.msg;
         }
         res.setStringPayload(finalResponsePayload);
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -240,7 +240,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -259,7 +259,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -278,7 +278,7 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -297,6 +297,6 @@ service <http> IntegratorService {
         else{
               res.setStringPayload(err.msg);
         }
-        res.send();
+        _ = res.send();
     }
 }

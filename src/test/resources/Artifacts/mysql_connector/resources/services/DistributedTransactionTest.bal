@@ -442,15 +442,15 @@ function disTransctionGeneral (json dataset) (string, int, error){
         transaction {
             while (i < length) {
                 var id, _ = (int)dataset.people[i].id;
-                sql:Parameter paraID = {sqlType:"integer", value:id, direction:0};
+                sql:Parameter paraID = {sqlType:sql:Type.INTEGER, value:id, direction:sql:Direction.IN};
                 var lastname1, _ = (string)dataset.people[i].lastname;
-                sql:Parameter paraLPName = {sqlType:"varchar", value:lastname1, direction:0};
+                sql:Parameter paraLPName = {sqlType:sql:Type.VARCHAR, value:lastname1, direction:sql:Direction.IN};
                 var firstname1, _ = (string)dataset.people[i].firstname;
-                sql:Parameter paraFPName = {sqlType:"varchar", value:firstname1, direction:0};
+                sql:Parameter paraFPName = {sqlType:sql:Type.VARCHAR, value:firstname1, direction:sql:Direction.IN};
                 var age1, _ = (int)dataset.people[i].age;
-                sql:Parameter paraAgeP = {sqlType:"varchar", value:age1, direction:0};
+                sql:Parameter paraAgeP = {sqlType:sql:Type.VARCHAR, value:age1, direction:sql:Direction.IN};
                 var status1, _ = (string)dataset.people[i].status;
-                sql:Parameter paraStatusP = {sqlType:"varchar", value:status1, direction:0};
+                sql:Parameter paraStatusP = {sqlType:sql:Type.VARCHAR, value:status1, direction:sql:Direction.IN};
                 parametersPeople = [paraID, paraLPName, paraFPName, paraAgeP, paraStatusP];
                 parametersPersons = [paraLPName, paraFPName, paraAgeP, paraStatusP];
 

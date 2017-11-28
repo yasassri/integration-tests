@@ -13,7 +13,7 @@ public function init() (sql:ClientConnector connInit){
 
     sql:ConnectionProperties propertiesInit = {maximumPoolSize:5, connectionTimeout:300000};
     connInit = create sql:ClientConnector(
-                                 sql:MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, propertiesInit);
+                                 sql:DB.MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, propertiesInit);
     return;
 }
 
@@ -26,7 +26,7 @@ public function initDistributedOne () (sql:ClientConnector connDisOne){
 
     sql:ConnectionProperties propertiesDisOne = {isXA:true, maximumPoolSize:5, connectionTimeout:300000};
     connDisOne = create sql:ClientConnector(
-                                 sql:MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, propertiesDisOne);
+                                 sql:DB.MYSQL, mysqlHostName, mysqlPort, mysqlDatabase, mysqlUserName, mysqlPassword, propertiesDisOne);
     return;
 }
 
@@ -40,6 +40,6 @@ public function initDistributedTwo () (sql:ClientConnector connDisTwo){
 
     sql:ConnectionProperties propertiesDisTwo = {isXA:true, maximumPoolSize:8, connectionTimeout:300000};
     connDisTwo = create sql:ClientConnector(
-                                 sql:MYSQL, mysqlHostNameOther, mysqlPortOther, mysqlDatabaseOther, mysqlUserNameOther, mysqlPasswordOther, propertiesDisTwo);
+                                 sql:DB.MYSQL, mysqlHostNameOther, mysqlPortOther, mysqlDatabaseOther, mysqlUserNameOther, mysqlPasswordOther, propertiesDisTwo);
     return;
 }

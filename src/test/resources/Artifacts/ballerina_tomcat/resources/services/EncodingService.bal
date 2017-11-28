@@ -13,6 +13,6 @@ service<http> EncodingService {
 
             string payload = req.getStringPayload();
             res.setStringPayload(payload);
-            res.send();
+            _ = res.send();
     }
 }

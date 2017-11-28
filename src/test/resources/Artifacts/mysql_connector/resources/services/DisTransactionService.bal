@@ -20,7 +20,7 @@ service <http> DisTransctionService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -38,7 +38,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -56,7 +56,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -76,7 +76,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -96,7 +96,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -112,7 +112,7 @@ service <http> DisTransctionService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -132,7 +132,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
    @http:resourceConfig {
@@ -154,7 +154,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Child Retried: "+retryValueChild +". Parent Retried: "+retryValueParent;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -176,7 +176,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Child Retried: "+retryValueChild +". Parent Retried: "+retryValueParent;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 
      @http:resourceConfig {
@@ -197,7 +197,7 @@ service <http> DisTransctionService {
               string re = err.msg +". Retried: "+retryValue;
               res.setStringPayload(re);
          }
-        res.send();
+        _ = res.send();
     }
 }
 

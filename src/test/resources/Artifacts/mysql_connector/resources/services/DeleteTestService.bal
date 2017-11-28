@@ -24,7 +24,7 @@ service <http> DeleteTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ = res.send();
     }
 
     @http:resourceConfig {
@@ -42,6 +42,6 @@ service <http> DeleteTestService {
          else{
               res.setStringPayload(err.msg);
          }
-        res.send();
+        _ =  res.send();
     }
 }
