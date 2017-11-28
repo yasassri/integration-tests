@@ -40,7 +40,7 @@ import static org.testng.Assert.assertNull;
  * Tests HTTP Status Codes
  * Uses StatusCodeService.bal service
  */
-public class HTTPStatusCodesTests extends BallerinaBaseTest{
+public class HTTPStatusCodesTests extends BallerinaBaseTest {
     HttpClient client;
     private static final Log log = LogFactory.getLog(HTTPStatusCodesTests.class);
     //String ballerinaURL = "http://192.168.48.118:32013";
