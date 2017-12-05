@@ -127,8 +127,8 @@ service <http> ServerConnectorService {
 
         string auth;
         string length;
-        auth, _ = req.getHeader("Authorization");
-        length, _ = req.getHeader("Content-Length");
+        auth = req.getHeader("Authorization");
+        length = req.getHeader("Content-Length");
         cLength, err = <int>length;
 
         if(auth.equalsIgnoreCase("YWRtaW46YWRtaW4=")){
@@ -173,7 +173,7 @@ service <http> ServerConnectorService {
     }
     resource getNewMenuDetailsResource (http:Request req, http:Response res) {
         string expect;
-        expect, _ = req.getHeader("Expect");
+        expect = req.getHeader("Expect");
         println(expect);
         if(!expect.equalsIgnoreCase("100-continue")){
             println("a");
