@@ -351,30 +351,7 @@ public class DBBatchInsertionTests extends BallerinaBaseTest {
         // Asserting the Response Message.
         assertEquals(response, expectedValue);
         //Asserting against inserted values to database
-        //persons[0]
-        assertEquals(lastnames.get(0), "");
-        assertEquals(firstnames.get(0), "SloaneD");
-        assertEquals(ages.get(0), "25");
-        assertEquals(ids.get(0), "1");
-        assertEquals(status.get(0), "active");
-        //persons[1]
-        assertEquals(lastnames.get(1), "HarryA");
-        assertEquals(firstnames.get(1), "SloaneB");
-        assertEquals(ages.get(1), "15");
-        assertEquals(ids.get(1), "2");
-        assertEquals(status.get(1), "active");
-        //persons[2]
-        assertEquals(lastnames.get(2), "KellyA");
-        assertEquals(firstnames.get(2), "SloaneA");
-        assertEquals(ages.get(2), "25");
-        assertEquals(ids.get(2), "3");
-        assertEquals(status.get(2), "inactive");
-        //persons[3]
-        assertEquals(lastnames.get(3), "DannyC");
-        assertEquals(firstnames.get(3), "SloaneC");
-        assertEquals(ages.get(3), "35");
-        assertEquals(ids.get(3), "4");
-        assertEquals(status.get(3), "inactive");
+
     }
 
     @Test(description = "Tests batch insert with string data in place of int")

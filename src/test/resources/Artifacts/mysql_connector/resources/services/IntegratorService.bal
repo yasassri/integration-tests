@@ -183,7 +183,10 @@ service <http> IntegratorService {
              int lengthUpdatedCount = lengthof updatedCount;
              while (i < lengthUpdatedCount){
               batchInsertedCount = updatedCount[i];
-              total = total + batchInsertedCount;
+              if (batchInsertedCount > 0){
+                       total = total + batchInsertedCount;
+                   }
+
               i = i + 1;
             }
               finalResponsePayload = <string>total;
